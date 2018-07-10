@@ -84,6 +84,12 @@ std::vector <int> SnakeUpdate(std::vector <int> &pos,bool &eaten){
         else if(pos.at(1)<pos.at(3))
             instructions.at(0)=pos.at(0)+1;
     }
+    for(int ctr(0);ctr<pos.size()-1;ctr++){
+        if(instructions.at(0)==pos.at(ctr) && instructions.at(1)==pos.at(ctr+1)){
+            std::cout<<"YOU LOST"<<std::endl<<"Your Score is "<<score<<std::endl;
+            exit(0);
+        }
+    }
     if(instructions.at(0)==fruitX && instructions.at(1)==fruitY){
         eaten=true;
         instructions.push_back(lastX);
@@ -91,7 +97,8 @@ std::vector <int> SnakeUpdate(std::vector <int> &pos,bool &eaten){
         score++;
     }
     input='n';
-    if(instructions.at(0)==21 || instructions.at(0)==-1 || instructions.at(1)==36 || instructions.at(1)==-1){
+    if(instructions.at(0)==20 || instructions.at(0)==-1 || instructions.at(1)==33 || instructions.at(1)==-1){
+        std::cout<<"YOU LOST"<<std::endl<<"Your Score is "<<score<<std::endl;){
         std::cout<<"YOU LOST"<<std::endl<<"Your Score is "<<score<<std::endl;
         exit(0);
     }
@@ -122,7 +129,6 @@ void LoadTable(std::vector <int> &instructions,bool &eaten){
                 k++;
             }
             SnakeDraw(instructions, i, k);
-            //std::cout<<" ";
         }
         std::cout<<"|"<<std::endl;
     }
